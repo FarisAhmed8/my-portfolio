@@ -1,0 +1,404 @@
+/* style_adjusted.css
+   Restored and improved CSS for your portfolio up to Projects + small refactors.
+   - Fixes: hero overlay, responsive nav, project card responsiveness (no fixed width),
+   about section grid adjustments, contact link hover, image object-fit, shadows, and extra breakpoints.
+   Paste this into ./css/style_adjusted.css (or replace your existing style.css after backing it up).
+*/
+
+/* ========== Global Styles ========== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Montserrat", sans-serif
+}
+
+html {
+    scroll-behavior: smooth
+}
+
+body {
+    font-family: "Work Sans", sans-serif;
+    color: #232629
+}
+
+/* Container system */
+.container {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto
+}
+
+@media (min-width:768px) {
+    .container {
+        width: 750px
+    }
+}
+
+@media (min-width:992px) {
+    .container {
+        width: 970px
+    }
+}
+
+@media (min-width:1200px) {
+    .container {
+        width: 1170px
+    }
+}
+
+/* Section title common */
+.section-title {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 40px;
+    color: #0a3952
+}
+
+/* ========== Hero ========== */
+.hero {
+    position: relative;
+    background-image: url(../assets/images/mountain.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    overflow: hidden
+}
+
+/* subtle overlay for better contrast */
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.18);
+    pointer-events: none
+}
+
+.hero .links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    position: relative;
+    z-index: 2
+}
+
+.hero .links img {
+    width: 100px;
+    border-radius: 50%;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.06)
+}
+
+.hero .links ul {
+    display: flex;
+    gap: 30px;
+    background: rgba(0, 0, 0, 0.35);
+    padding: 10px 20px;
+    border-radius: 30px;
+    align-items: center
+}
+
+.hero .links li {
+    list-style: none
+}
+
+.hero .links a {
+    text-decoration: none;
+    color: #f0f1ec;
+    font-weight: 500;
+    transition: color .25s ease
+}
+
+.hero .links a:hover {
+    color: #ffd700
+}
+
+.hero .intro-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #f0f1ec;
+    z-index: 2;
+    padding: 0 16px
+}
+
+.hero .intro-text h1 {
+    font-family: "Sacramento", cursive;
+    font-weight: 700;
+    font-size: 72px;
+    margin-bottom: 10px;
+    color: #ffffff;
+    text-shadow: 0 6px 18px rgba(0, 0, 0, 0.35)
+}
+
+.hero .intro-text h2 {
+    font-size: 28px;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.95)
+}
+
+/* ========== Resume ========== */
+.resume {
+    background: linear-gradient(180deg, #e6ecf0 0%, #d5e2ea 100%);
+    padding: 80px 0
+}
+
+.resume-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    align-items: start
+}
+
+.resume h3 {
+    color: #004592;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #004592;
+    display: inline-block
+}
+
+.resume .item h4 {
+    margin-bottom: 5px;
+    color: #232629
+}
+
+.resume .item,
+.resume .skills li {
+    transition: all .3s ease
+}
+
+.resume .item:hover,
+.resume .skills li:hover {
+    color: #004592;
+    transform: translateY(-3px)
+}
+
+.resume .item:hover {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08)
+}
+
+.resume i {
+    transition: color .25s ease
+}
+
+.resume i:hover {
+    color: darkslategrey
+}
+
+@media (max-width:767px) {
+    .resume-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center
+    }
+}
+
+/* ========== Projects ========== */
+.projects {
+    padding: 80px 0;
+    background-color: #f6f6f6
+}
+
+.projects .project-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 24px
+}
+
+/* Card: responsive and fluid (no fixed width) */
+.projects .card {
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+    background: linear-gradient(180deg, #ffffff 0%, #f5f7f8 100%);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    transition: transform .28s ease, box-shadow .28s ease
+}
+
+.projects .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1)
+}
+
+.projects .card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block
+}
+
+.projects .card .info {
+    padding: 20px;
+    transition: transform .3s ease
+}
+
+.projects .card .info h3 {
+    color: #0a3952;
+    margin-bottom: 12px;
+    font-size: 18px
+}
+
+.projects .card .info p {
+    color: #666;
+    line-height: 1.6;
+    font-size: 15px
+}
+
+.projects .card .info .badges {
+    margin-top: 12px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap
+}
+
+.projects .card .info .badge {
+    background: #e6eef6;
+    color: #004592;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 13px
+}
+
+@media (max-width:767px) {
+    .projects .project-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center
+    }
+
+    .projects .card {
+        max-width: 92%
+    }
+}
+
+/* ========== About ========== */
+.about {
+    padding: 80px 0;
+    background: linear-gradient(180deg, #e6ecf0 0%, #d5e2ea 100%)
+}
+
+.about .content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto
+}
+
+.about .content .images {
+    display: block
+}
+
+.about .content .images img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px
+}
+
+.about .content .text {
+    padding: 10px
+}
+
+.about .content .text h3 {
+    margin-bottom: 10px;
+    text-align: left
+}
+
+.about hr {
+    border: 0;
+    border-bottom: 3px solid #0a3952;
+    width: 50px;
+    margin-bottom: 10px
+}
+
+.about .content .text p {
+    line-height: 1.9;
+    color: #555
+}
+
+.about .content .text span {
+    color: #0a3952;
+    font-weight: 600
+}
+
+@media (max-width:992px) {
+    .about .content {
+        grid-template-columns: 1fr;
+        text-align: center
+    }
+
+    .about .content .text h3 {
+        text-align: center
+    }
+}
+
+@media (max-width:767px) {
+    .about .content .images {
+        display: none
+    }
+}
+
+/* ========== Contact / Footer ========== */
+.contact {
+    padding: 40px 0;
+    background-color: #2c4755;
+    color: #10cab7
+}
+
+.contact ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 12px
+}
+
+.contact li {
+    list-style: none
+}
+
+.contact a {
+    text-decoration: none;
+    color: inherit;
+    padding: 6px 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px
+}
+
+.contact a:hover {
+    color: #ffffff;
+    transform: translateY(-2px);
+    transition: all .2s ease
+}
+
+.contact p {
+    text-align: center;
+    color: inherit;
+    padding: 5px
+}
+
+/* ========== Utility / small helpers ========== */
+img {
+    display: block;
+    max-width: 100%;
+    height: auto
+}
+
+/* small accessibility focus styles */
+a:focus {
+    outline: 3px solid rgba(0, 107, 179, 0.15);
+    outline-offset: 3px
+}
+
+/* End of style_adjusted.css */
